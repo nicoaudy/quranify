@@ -12,7 +12,7 @@ class SurahInfo {
   SurahInfo.fromJson(Map<String, dynamic> json) :
         translation = json['translation'],
         arabic = json['arabic'],
-        latin = json[' latin'],
+        latin = json['latin'],
         count = json['count'],
         index = json['index'],
         opening = json['opening'],
