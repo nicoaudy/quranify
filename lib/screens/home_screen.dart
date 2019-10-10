@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hijra/models/surah_info.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future loadSurahInfo() async {
     String response = await rootBundle.loadString('static/surah-info.json');
-    List collection = jsonDecode(response);
+    List<SurahInfo> collection = jsonDecode(response);
     setState(() => {
       surahInfo = collection
     });
