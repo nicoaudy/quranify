@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future loadSurahInfo() async {
-    var response = await rootBundle.loadString('static/surah-info.json');
-    var collection = jsonDecode(response);
+    String response = await rootBundle.loadString('static/surah-info.json');
+    List collection = jsonDecode(response);
     setState(() => {
       surahInfo = collection
     });
