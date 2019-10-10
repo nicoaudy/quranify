@@ -35,9 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
         itemCount: surahInfo.length,
         itemBuilder: (BuildContext context, int index) {
+          SurahInfo info = surahInfo[index];
           return ListTile(
-            title: Text(surahInfo[index]['translation']),
-            subtitle: Text(surahInfo[index]['latin'] + ' - ' + surahInfo[index]['arabic']),
+            title: Text(info.translation),
+            subtitle: Text(info.latin + ' - ' + info.arabic),
           );
         },
       ),
