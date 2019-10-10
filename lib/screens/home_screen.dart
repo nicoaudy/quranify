@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hijr 🔥"),
+        title: Text("Quranify"),
       ),
       body: ListView.builder(
         itemCount: surahInfo.length,
