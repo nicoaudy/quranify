@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future loadSurahInfo() async {
-    String response = await rootBundle.loadString('static/surah-info.json');
+    String response = await rootBundle.loadString('static/surah_info.json');
     List collection = jsonDecode(response);
     List<SurahInfo> _surahInfo =
         collection.map((json) => SurahInfo.fromJson(json)).toList();
