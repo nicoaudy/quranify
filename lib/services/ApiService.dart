@@ -9,4 +9,11 @@ class ApiService {
     List collection = jsonDecode(response);
     return collection.map((json) => SurahInfo.fromJson(json)).toList();
   }
+
+  Future loadSurah(index) async {
+    String response = await rootBundle.loadString('static/$index.json');
+    var collection = jsonDecode(response);
+    print(collection);
+    // return collection.map((json) => SurahInfo.fromJson(json)).toList();
+  }
 }

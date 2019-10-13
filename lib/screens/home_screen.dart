@@ -1,6 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:hijra/providers/detail_surah_provider.dart';
+import 'package:hijra/screens/detail_surah_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hijra/components/info_card.dart';
 import 'package:hijra/providers/surah_info_provider.dart';
@@ -20,6 +20,15 @@ class HomeScreen extends StatelessWidget {
             title: surahInfo.data[index].latin,
             trans: surahInfo.data[index].translation,
             arab: surahInfo.data[index].arabic,
+            onTap: () {
+              final int numSurah = surahInfo.data[index].index;
+              Provider.of<DetailSurahProvider>(context).changeIndex(numSurah);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailSurahScreen(index: numSurah)));
+            },
           );
         },
       ),

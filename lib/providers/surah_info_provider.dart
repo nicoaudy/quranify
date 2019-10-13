@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:hijra/models/surah_info.dart';
 import 'package:hijra/services/ApiService.dart';
