@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:hijra/models/surah_info.dart';
-import 'package:hijra/services/api_surah_info_service.dart';
+import 'package:hijra/services/ApiService.dart';
 
 class SurahInfoProvider with ChangeNotifier {
   List<SurahInfo> data = [];
@@ -11,7 +13,8 @@ class SurahInfoProvider with ChangeNotifier {
   }
 
   _fetchData() async {
-    List<SurahInfo> data = await ApiSurahInfoService().loadData();
+    List<SurahInfo> data = await ApiService().loadInfo();
+
     this.data = data;
     notifyListeners();
   }
