@@ -21,13 +21,16 @@ class HomeScreen extends StatelessWidget {
             trans: surahInfo.data[index].translation,
             arab: surahInfo.data[index].arabic,
             onTap: () {
-              final int numSurah = surahInfo.data[index].index;
-              Provider.of<DetailSurahProvider>(context).changeIndex(numSurah);
+              final surah = surahInfo.data[index];
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          DetailSurahScreen(index: numSurah)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailSurahScreen(
+                    index: surah.index,
+                    latin: surah.latin,
+                  ),
+                ),
+              );
             },
           );
         },
