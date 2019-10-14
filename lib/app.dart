@@ -10,6 +10,7 @@ class App extends StatelessWidget {
 
     return MaterialApp(
       title: 'Quranify',
+      debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
       home: HomeScreen(),
     );
