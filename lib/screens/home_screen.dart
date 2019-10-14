@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hijra/providers/detail_surah_provider.dart';
 import 'package:hijra/screens/detail_surah_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:hijra/components/info_card.dart';

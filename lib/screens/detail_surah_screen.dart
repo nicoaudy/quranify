@@ -28,14 +28,29 @@ class DetailSurahScreen extends StatelessWidget {
                   itemCount: snapshot.data.text.length,
                   itemBuilder: (BuildContext c, int i) {
                     String key = snapshot.data.text.keys.elementAt(i);
+                    if (i == 0) {
+                      return Image.asset('assets/bismillah.jpg');
+                    }
+                    i -= 1;
+
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 5.0),
+                      padding: EdgeInsets.symmetric(vertical: 1.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           ListTile(
-                            leading: Text(snapshot.data.text.keys.elementAt(i)),
+                            leading: Container(
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).primaryColor),
+                              child: Text(
+                                snapshot.data.text.keys.elementAt(i),
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColorLight,
+                                ),
+                              ),
+                            ),
                             title: Text(
                               '${snapshot.data.text[key]}',
                               textAlign: TextAlign.end,
@@ -43,6 +58,21 @@ class DetailSurahScreen extends StatelessWidget {
                                 fontSize: 20.0,
                                 height: 1.5,
                               ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Terjemah',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  snapshot.data.translations.id.text[key],
+                                ),
+                              ],
                             ),
                           ),
                         ],
