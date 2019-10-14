@@ -11,6 +11,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Quranify"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            color: Theme.of(context).primaryColorLight,
+            onPressed: () => {},
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: surahInfo.data.length,
