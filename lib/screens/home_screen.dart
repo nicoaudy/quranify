@@ -1,46 +1,34 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:hijra/providers/detail_surah_provider.dart';
+import 'package:hijra/screens/detail_surah_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:hijra/components/info_card.dart';
-import 'package:hijra/models/surah_info.dart';
+import 'package:hijra/providers/surah_info_provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  var surahInfo = [];
-
-  @override
-  void initState() {
-    super.initState();
-    loadSurahInfo();
-  }
-
-  Future loadSurahInfo() async {
-    String response = await rootBundle.loadString('static/surah_info.json');
-    List collection = jsonDecode(response);
-    List<SurahInfo> _surahInfo =
-        collection.map((json) => SurahInfo.fromJson(json)).toList();
-    setState(() => surahInfo = _surahInfo);
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final surahInfo = Provider.of<SurahInfoProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Quranify"),
       ),
       body: ListView.builder(
-        itemCount: surahInfo.length,
+        itemCount: surahInfo.data.length,
         itemBuilder: (BuildContext context, int index) {
-          SurahInfo info = surahInfo[index];
           return InfoCard(
-            title: info.latin,
-            trans: info.translation,
-            arab: info.arabic,
+            title: surahInfo.data[index].latin,
+            trans: surahInfo.data[index].translation,
+            arab: surahInfo.data[index].arabic,
+            onTap: () {
+              final int numSurah = surahInfo.data[index].index;
+              Provider.of<DetailSurahProvider>(context).changeIndex(numSurah);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DetailSurahScreen(index: numSurah)));
+            },
           );
         },
       ),

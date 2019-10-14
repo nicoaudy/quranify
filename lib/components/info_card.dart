@@ -4,16 +4,27 @@ class InfoCard extends StatelessWidget {
   final String title;
   final String trans;
   final String arab;
+  final Function onTap;
 
-  InfoCard({@required this.title, @required this.trans, @required this.arab});
+  InfoCard(
+      {@required this.title,
+      @required this.trans,
+      @required this.arab,
+      @required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 8.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      color: Colors.transparent,
       child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
         child: ListTile(
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -57,7 +68,7 @@ class InfoCard extends StatelessWidget {
             ],
           ),
           trailing: GestureDetector(
-            onTap: () => print("tap"),
+            onTap: onTap,
             child: Icon(
               Icons.keyboard_arrow_right,
               color: Colors.white,
