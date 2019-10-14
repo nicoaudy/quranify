@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hijra/components/card_info.dart';
 import 'package:hijra/screens/detail_surah_screen.dart';
+import 'package:hijra/screens/setting_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:hijra/components/info_card.dart';
 import 'package:hijra/providers/surah_info_provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,16 +14,16 @@ class HomeScreen extends StatelessWidget {
         title: Text("Quranify"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
-            color: Theme.of(context).primaryColorLight,
-            onPressed: () => {},
-          )
+              icon: Icon(Icons.settings),
+              color: Theme.of(context).primaryColorLight,
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen())))
         ],
       ),
       body: ListView.builder(
         itemCount: surahInfo.data.length,
         itemBuilder: (BuildContext context, int index) {
-          return InfoCard(
+          return CardInfo(
             title: surahInfo.data[index].latin,
             trans: surahInfo.data[index].translation,
             arab: surahInfo.data[index].arabic,

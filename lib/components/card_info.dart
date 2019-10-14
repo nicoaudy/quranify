@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class InfoCard extends StatelessWidget {
+class CardInfo extends StatelessWidget {
   final String title;
   final String trans;
   final String arab;
   final Function onTap;
 
-  InfoCard(
+  CardInfo(
       {@required this.title,
       @required this.trans,
       @required this.arab,

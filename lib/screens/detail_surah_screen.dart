@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hijra/providers/setting_provider.dart';
 import 'package:hijra/services/ApiService.dart';
+import 'package:provider/provider.dart';
 
 class DetailSurahScreen extends StatelessWidget {
   final int index;
@@ -55,7 +57,8 @@ class DetailSurahScreen extends StatelessWidget {
                               '${snapshot.data.text[key]}',
                               textAlign: TextAlign.end,
                               style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: Provider.of<SettingProvider>(context)
+                                    .arabSize,
                                 height: 1.5,
                               ),
                             ),
