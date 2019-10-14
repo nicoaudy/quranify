@@ -17,6 +17,7 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 8.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
