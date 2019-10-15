@@ -9,12 +9,12 @@ class ThemeChanger extends ChangeNotifier {
   static List<ThemeData> themes = [
     ThemeData(
       brightness: Brightness.light,
-      primarySwatch: Colors.brown,
+      primarySwatch: Colors.indigo,
       scaffoldBackgroundColor: Colors.white,
     ),
     ThemeData(
       brightness: Brightness.dark,
-      primarySwatch: Colors.brown,
+      primarySwatch: Colors.indigo,
       scaffoldBackgroundColor: Colors.black,
     ),
   ];
