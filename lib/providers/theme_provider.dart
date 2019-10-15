@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 
 class ThemeChanger extends ChangeNotifier {
   bool isDark;
+  static Color _primaryColor = Colors.indigo;
 
   ThemeChanger(this.isDark);
 
   static List<ThemeData> themes = [
     ThemeData(
       brightness: Brightness.light,
-      primarySwatch: Colors.indigo,
+      primarySwatch: _primaryColor,
       scaffoldBackgroundColor: Colors.white,
     ),
     ThemeData(
       brightness: Brightness.dark,
-      primarySwatch: Colors.indigo,
+      primarySwatch: _primaryColor,
       scaffoldBackgroundColor: Colors.black,
     ),
   ];
@@ -23,6 +24,12 @@ class ThemeChanger extends ChangeNotifier {
 
   setTheme() {
     isDark = !isDark;
+    notifyListeners();
+  }
+
+  Color get primaryColor => _primaryColor;
+  set primaryColor(payload) {
+    _primaryColor = payload;
     notifyListeners();
   }
 }

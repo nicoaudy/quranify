@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         title: Text("Quranify"),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.more_vert),
               color: Theme.of(context).primaryColorLight,
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SettingScreen())))

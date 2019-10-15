@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hijra/providers/setting_provider.dart';
+import 'package:hijra/screens/setting_screen.dart';
 import 'package:hijra/services/ApiService.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,13 @@ class DetailSurahScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.more_vert),
+              color: Theme.of(context).primaryColorLight,
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingScreen())))
+        ],
       ),
       body: FutureBuilder(
         future: ApiService().loadSurah(index),
