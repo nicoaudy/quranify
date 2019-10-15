@@ -11,7 +11,6 @@ class DetailSurahScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(index);
     return Scaffold(
       appBar: AppBar(
         title: Text("$latin"),

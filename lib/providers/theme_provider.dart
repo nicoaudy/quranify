@@ -6,7 +6,20 @@ class ThemeChanger extends ChangeNotifier {
 
   ThemeChanger(this.isDark);
 
-  getTheme() => isDark ? ThemeData.dark() : ThemeData.light();
+  static List<ThemeData> themes = [
+    ThemeData(
+      brightness: Brightness.light,
+      primarySwatch: Colors.brown,
+      scaffoldBackgroundColor: Colors.white,
+    ),
+    ThemeData(
+      brightness: Brightness.dark,
+      primarySwatch: Colors.brown,
+      scaffoldBackgroundColor: Colors.black,
+    ),
+  ];
+
+  getTheme() => isDark ? themes[1] : themes[0];
 
   setTheme() {
     isDark = !isDark;
