@@ -39,7 +39,10 @@ class DetailSurahScreen extends StatelessWidget {
                   itemBuilder: (BuildContext c, int i) {
                     String key = snapshot.data.text.keys.elementAt(i);
                     if (i == 0) {
-                      return Image.asset('assets/bismillah.jpg');
+                      return Hero(
+                        tag: latin,
+                        child: Image.asset('assets/bismillah.jpg'),
+                      );
                     }
                     i -= 1;
 

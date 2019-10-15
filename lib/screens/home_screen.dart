@@ -23,22 +23,25 @@ class HomeScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: surahInfo.data.length,
         itemBuilder: (BuildContext context, int index) {
-          return CardInfo(
-            title: surahInfo.data[index].latin,
-            trans: surahInfo.data[index].translation,
-            arab: surahInfo.data[index].arabic,
-            onTap: () {
-              final surah = surahInfo.data[index];
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailSurahScreen(
-                    index: surah.index,
-                    latin: surah.latin,
+          final surah = surahInfo.data[index];
+          return Hero(
+            tag: surah.latin,
+            child: CardInfo(
+              title: surah.latin,
+              trans: surah.translation,
+              arab: surah.arabic,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailSurahScreen(
+                      index: surah.index,
+                      latin: surah.latin,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
         },
       ),
