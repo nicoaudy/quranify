@@ -24,6 +24,13 @@ class SettingScreen extends StatelessWidget {
               onChanged: (payload) => theme.setTheme(),
             ),
           ),
+          CardSwitch(
+            title: 'Tampilkan Tafsir',
+            leading: Switch(
+              value: setting.tafsir,
+              onChanged: (payload) => setting.tafsir = payload,
+            ),
+          ),
           CardSlider(
             title: 'Ukuran teks terjemahan',
             slider: Slider(

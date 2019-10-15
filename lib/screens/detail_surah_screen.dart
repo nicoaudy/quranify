@@ -22,6 +22,7 @@ class DetailSurahScreen extends StatelessWidget {
       body: FutureBuilder(
         future: ApiService().loadSurah(index),
         builder: (context, snapshot) {
+          final setting = Provider.of<SettingProvider>(context);
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
           return snapshot.hasData
               ? ListView.builder(
@@ -56,8 +57,7 @@ class DetailSurahScreen extends StatelessWidget {
                               '${snapshot.data.text[key]}',
                               textAlign: TextAlign.end,
                               style: TextStyle(
-                                fontSize: Provider.of<SettingProvider>(context)
-                                    .arabSize,
+                                fontSize: setting.arabSize,
                                 height: 1.5,
                               ),
                             ),
@@ -77,6 +77,23 @@ class DetailSurahScreen extends StatelessWidget {
                               ],
                             ),
                           ),
+                          if (setting.tafsir)
+                            Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Tafsir Kemenag',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    snapshot.data.tafsir.id.kemenag.text[key],
+                                  ),
+                                ],
+                              ),
+                            )
                         ],
                       ),
                     );
