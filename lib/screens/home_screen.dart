@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
           return Hero(
             tag: surah.latin,
             child: CardInfo(
+              index: surah.index,
               title: surah.latin,
               trans: surah.translation,
               arab: surah.arabic,

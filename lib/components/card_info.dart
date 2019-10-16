@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CardInfo extends StatelessWidget {
+  final int index;
   final String title;
   final String trans;
   final String arab;
   final Function onTap;
 
   CardInfo(
-      {@required this.title,
+      {@required this.index,
+      @required this.title,
       @required this.trans,
       @required this.arab,
       @required this.onTap});
@@ -37,8 +39,13 @@ class CardInfo extends StatelessWidget {
                   right: BorderSide(width: 1.0, color: Colors.white24),
                 ),
               ),
-              child: Icon(Icons.receipt,
-                  color: Theme.of(context).primaryColorLight),
+              child: CircleAvatar(
+                backgroundColor: Theme.of(context).primaryColorLight,
+                child: Text(
+                  '$index',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
+              ),
             ),
             title: Text(
               title,
