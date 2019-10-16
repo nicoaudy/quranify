@@ -55,7 +55,7 @@ class CardInfo extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              trans,
+              'Terjemahan : $trans',
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight, fontSize: 11.0),
             ),
