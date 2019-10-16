@@ -48,34 +48,16 @@ class CardInfo extends StatelessWidget {
               ),
             ),
             title: Text(
-              title,
+              '$title ( $arab )',
               style: TextStyle(
                 color: Theme.of(context).primaryColorLight,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Row(
-              children: <Widget>[
-                Text(
-                  trans,
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColorLight,
-                      fontSize: 11.0),
-                ),
-                Text(
-                  " - ",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorLight,
-                  ),
-                ),
-                Text(
-                  arab,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorLight,
-                    fontSize: 20.0,
-                  ),
-                )
-              ],
+            subtitle: Text(
+              trans,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColorLight, fontSize: 11.0),
             ),
             trailing: GestureDetector(
               onTap: onTap,
