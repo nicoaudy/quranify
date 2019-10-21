@@ -17,7 +17,7 @@ class DetailSurahScreen extends StatefulWidget {
 }
 
 class _DetailSurahScreenState extends State<DetailSurahScreen> {
-  int bottomIndex = 2;
+  int bottomIndex = 1;
   bool isPlay = false;
   bool isPause = false;
   AudioPlayer audioPlayer = AudioPlayer();
