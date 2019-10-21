@@ -1,20 +1,61 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hijra/providers/setting_provider.dart';
+import 'package:hijra/providers/surah_info_provider.dart';
 import 'package:hijra/screens/setting_screen.dart';
 import 'package:hijra/services/ApiService.dart';
 import 'package:provider/provider.dart';
 
-class DetailSurahScreen extends StatelessWidget {
+class DetailSurahScreen extends StatefulWidget {
   final int index;
   final String latin;
 
   DetailSurahScreen({@required this.index, @required this.latin});
 
   @override
+  _DetailSurahScreenState createState() => _DetailSurahScreenState();
+}
+
+class _DetailSurahScreenState extends State<DetailSurahScreen> {
+  int bottomIndex = 2;
+  bool isPlay = false;
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void play() async {
+    if (!isPlay) {
+      final audioUrl = Provider.of<SurahInfoProvider>(context, listen: false)
+          .findAudioUrl(widget.index);
+      int result = await audioPlayer.play(audioUrl);
+      if (result == 1) {
+        setState(() {
+          isPlay = true;
+        });
+      }
+    } else {
+      int result = await audioPlayer.stop();
+      if (result == 1) {
+        setState(() {
+          isPlay = false;
+        });
+      }
+    }
+  }
+
+  void _changeBottomIndex(index) {
+    if (index == 1) {
+      play();
+    }
+
+    setState(() {
+      bottomIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("$latin"),
+        title: Text("${widget.latin}"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
@@ -28,7 +69,7 @@ class DetailSurahScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder(
-        future: ApiService().loadSurah(index),
+        future: ApiService().loadSurah(widget.index),
         builder: (context, snapshot) {
           final setting = Provider.of<SettingProvider>(context);
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
@@ -42,7 +83,7 @@ class DetailSurahScreen extends StatelessWidget {
                       children: <Widget>[
                         if (i == 0)
                           Hero(
-                            tag: latin,
+                            tag: widget.latin,
                             child: Image.asset('assets/bismillah.jpg'),
                           ),
                         Padding(
@@ -117,6 +158,19 @@ class DetailSurahScreen extends StatelessWidget {
                 )
               : Center(child: CircularProgressIndicator());
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: bottomIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_left), title: Text('Previous')),
+          BottomNavigationBarItem(
+              icon: Icon(isPlay ? Icons.stop : Icons.play_arrow),
+              title: Text('${!isPlay ? "Play" : "Stop"}')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.arrow_right), title: Text('Next')),
+        ],
+        onTap: _changeBottomIndex,
       ),
     );
   }

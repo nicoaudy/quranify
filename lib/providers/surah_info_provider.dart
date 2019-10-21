@@ -120,14 +120,11 @@ class SurahInfoProvider with ChangeNotifier {
     'http://ia802609.us.archive.org/13/items/quraninindonesia/113AlFalaq.mp3',
     'http://ia802609.us.archive.org/13/items/quraninindonesia/114AnNaas.mp3',
   ];
+  bool _isPlay = false;
 
   // constructor like component didmount but in the service
   SurahInfoProvider() {
     _fetchData();
-  }
-
-  String findAudioUrl(id) {
-    return _audioUrl[id - 1];
   }
 
   _fetchData() async {
@@ -135,5 +132,15 @@ class SurahInfoProvider with ChangeNotifier {
 
     this.data = data;
     notifyListeners();
+  }
+
+  bool get isPlay => _isPlay;
+  setPlay() {
+    _isPlay = !_isPlay;
+    notifyListeners();
+  }
+
+  String findAudioUrl(id) {
+    return _audioUrl[id - 1];
   }
 }
