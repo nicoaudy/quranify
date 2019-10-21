@@ -38,75 +38,80 @@ class DetailSurahScreen extends StatelessWidget {
                   itemCount: snapshot.data.text.length,
                   itemBuilder: (BuildContext c, int i) {
                     String key = snapshot.data.text.keys.elementAt(i);
-                    if (i == 0) {
-                      return Hero(
-                        tag: latin,
-                        child: Image.asset('assets/bismillah.jpg'),
-                      );
-                    }
-                    i -= 1;
-
-                    return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 1.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            leading: Container(
-                              padding: EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Theme.of(context).primaryColor),
-                              child: Text(
-                                snapshot.data.text.keys.elementAt(i),
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColorLight,
-                                ),
-                              ),
-                            ),
-                            title: Text(
-                              '${snapshot.data.text[key]}',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontSize: setting.arabSize,
-                                height: 1.5,
-                              ),
-                            ),
+                    return Column(
+                      children: <Widget>[
+                        if (i == 0)
+                          Hero(
+                            tag: latin,
+                            child: Image.asset('assets/bismillah.jpg'),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  'Terjemah',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  snapshot.data.translations.id.text[key],
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (setting.tafsir)
-                            Padding(
-                              padding: EdgeInsets.all(15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Tafsir Kemenag',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 1.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              ListTile(
+                                leading: Container(
+                                  padding: EdgeInsets.all(10.0),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).primaryColor),
+                                  child: Text(
+                                    snapshot.data.text.keys.elementAt(i),
+                                    style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                    ),
                                   ),
-                                  Text(
-                                    snapshot.data.tafsir.id.kemenag.text[key],
+                                ),
+                                title: Text(
+                                  '${snapshot.data.text[key]}',
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    fontSize: setting.arabSize,
+                                    height: 1.5,
                                   ),
-                                ],
+                                ),
                               ),
-                            )
-                        ],
-                      ),
+                              Padding(
+                                padding: EdgeInsets.all(15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      'Terjemah',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      snapshot.data.translations.id.text[key],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              if (setting.tafsir)
+                                Padding(
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Tafsir Kemenag',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        snapshot
+                                            .data.tafsir.id.kemenag.text[key],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                            ],
+                          ),
+                        )
+                      ],
                     );
                   },
                 )
