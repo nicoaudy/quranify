@@ -4,7 +4,7 @@ import 'package:hijra/services/ApiService.dart';
 
 class SurahInfoProvider with ChangeNotifier {
   List<SurahInfo> data = [];
-  List _mp3 = [
+  List _audioUrl = [
     'http://ia802609.us.archive.org/13/items/quraninindonesia/001AlFaatihah.mp3',
     'http://ia802609.us.archive.org/13/items/quraninindonesia/002AlBaqarah.mp3',
     'http://ia802609.us.archive.org/13/items/quraninindonesia/003AliImran.mp3',
@@ -124,6 +124,10 @@ class SurahInfoProvider with ChangeNotifier {
   // constructor like component didmount but in the service
   SurahInfoProvider() {
     _fetchData();
+  }
+
+  String findAudioUrl(id) {
+    return _audioUrl[id - 1];
   }
 
   _fetchData() async {
