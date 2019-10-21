@@ -19,31 +19,44 @@ class DetailSurahScreen extends StatefulWidget {
 class _DetailSurahScreenState extends State<DetailSurahScreen> {
   int bottomIndex = 2;
   bool isPlay = false;
+  bool isPause = false;
   AudioPlayer audioPlayer = AudioPlayer();
 
   void play() async {
     if (!isPlay) {
       final audioUrl = Provider.of<SurahInfoProvider>(context, listen: false)
           .findAudioUrl(widget.index);
-      int result = await audioPlayer.play(audioUrl);
-      if (result == 1) {
-        setState(() {
-          isPlay = true;
-        });
+
+      if (isPause) {
+        await audioPlayer.resume();
+      } else {
+        await audioPlayer.play(audioUrl);
       }
+
+      setState(() {
+        isPlay = true;
+      });
     } else {
-      int result = await audioPlayer.stop();
-      if (result == 1) {
-        setState(() {
-          isPlay = false;
-        });
-      }
+      await audioPlayer.pause();
+      setState(() {
+        isPlay = false;
+        isPause = true;
+      });
     }
+  }
+
+  void stop() async {
+    await audioPlayer.stop();
+    setState(() {
+      isPlay = false;
+    });
   }
 
   void _changeBottomIndex(index) {
     if (index == 1) {
       play();
+    } else {
+      stop();
     }
 
     setState(() {
@@ -162,13 +175,11 @@ class _DetailSurahScreenState extends State<DetailSurahScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomIndex,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.stop), title: Text('Stop')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_left), title: Text('Previous')),
-          BottomNavigationBarItem(
-              icon: Icon(isPlay ? Icons.stop : Icons.play_arrow),
-              title: Text('${!isPlay ? "Play" : "Stop"}')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.arrow_right), title: Text('Next')),
+            icon: Icon(isPlay ? Icons.pause : Icons.play_arrow),
+            title: Text('${!isPlay ? "Play" : "Pause"}'),
+          ),
         ],
         onTap: _changeBottomIndex,
       ),
