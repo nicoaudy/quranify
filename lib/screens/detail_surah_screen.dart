@@ -28,28 +28,38 @@ class _DetailSurahScreenState extends State<DetailSurahScreen> {
           .findAudioUrl(widget.index);
 
       if (isPause) {
-        await audioPlayer.resume();
+        int result = await audioPlayer.resume();
+        if (result == 1) {
+          setState(() {
+            isPlay = true;
+          });
+        }
       } else {
-        await audioPlayer.play(audioUrl);
+        int result = await audioPlayer.play(audioUrl);
+        if (result == 1) {
+          setState(() {
+            isPlay = true;
+          });
+        }
       }
-
-      setState(() {
-        isPlay = true;
-      });
     } else {
-      await audioPlayer.pause();
-      setState(() {
-        isPlay = false;
-        isPause = true;
-      });
+      int result = await audioPlayer.pause();
+      if (result == 1) {
+        setState(() {
+          isPlay = false;
+          isPause = true;
+        });
+      }
     }
   }
 
   void stop() async {
-    await audioPlayer.stop();
-    setState(() {
-      isPlay = false;
-    });
+    int result = await audioPlayer.stop();
+    if (result == 1) {
+      setState(() {
+        isPlay = false;
+      });
+    }
   }
 
   void _changeBottomIndex(index) {
