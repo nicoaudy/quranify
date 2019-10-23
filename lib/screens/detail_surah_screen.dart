@@ -22,44 +22,46 @@ class _DetailSurahScreenState extends State<DetailSurahScreen> {
   bool isPause = false;
   AudioPlayer audioPlayer = AudioPlayer();
 
+  @override
+  void dispose() async {
+    super.dispose();
+
+    // if screen was destroyed stop the audio first
+    if (isPlay) {
+      await audioPlayer.stop();
+    }
+  }
+
   void play() async {
     if (!isPlay) {
       final audioUrl = Provider.of<SurahInfoProvider>(context, listen: false)
           .findAudioUrl(widget.index);
 
       if (isPause) {
-        int result = await audioPlayer.resume();
-        if (result == 1) {
-          setState(() {
-            isPlay = true;
-          });
-        }
-      } else {
-        int result = await audioPlayer.play(audioUrl);
-        if (result == 1) {
-          setState(() {
-            isPlay = true;
-          });
-        }
-      }
-    } else {
-      int result = await audioPlayer.pause();
-      if (result == 1) {
+        await audioPlayer.resume();
         setState(() {
-          isPlay = false;
-          isPause = true;
+          isPlay = true;
+        });
+      } else {
+        await audioPlayer.play(audioUrl);
+        setState(() {
+          isPlay = true;
         });
       }
+    } else {
+      await audioPlayer.pause();
+      setState(() {
+        isPlay = false;
+        isPause = true;
+      });
     }
   }
 
   void stop() async {
-    int result = await audioPlayer.stop();
-    if (result == 1) {
-      setState(() {
-        isPlay = false;
-      });
-    }
+    await audioPlayer.stop();
+    setState(() {
+      isPlay = false;
+    });
   }
 
   void _changeBottomIndex(index) {
