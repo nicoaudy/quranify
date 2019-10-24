@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hijra/providers/theme_provider.dart';
 import 'package:hijra/screens/home_screen.dart';
+import 'package:hijra/screens/quran_screen.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
