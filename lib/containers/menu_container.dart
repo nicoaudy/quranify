@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hijra/components/menu_item.dart';
 import 'package:hijra/screens/asmaul_husna_screen.dart';
+import 'package:hijra/screens/coming_soon_screen.dart';
 import 'package:hijra/screens/doa_harian_screen.dart';
 import 'package:hijra/screens/quran_screen.dart';
 
@@ -23,6 +24,7 @@ class MenuContainer extends StatelessWidget {
     QuranScreen(),
     AsmaulHusnaScreen(),
     DoaHarianScreen(),
+    ComingSoonScreen(),
   ];
 
   @override

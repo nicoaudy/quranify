@@ -27,7 +27,9 @@ class DoaHarianScreen extends StatelessWidget {
                     child: Text(
                       doaHarian.data[index].title,
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Divider(),
