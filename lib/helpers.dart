@@ -1,6 +1,4 @@
 int getColorHexFromStr(String colorStr) {
-  // #FDD148
-  // #FEE16D
   colorStr = "FF" + colorStr;
   colorStr = colorStr.replaceAll("#", "");
   int val = 0;
