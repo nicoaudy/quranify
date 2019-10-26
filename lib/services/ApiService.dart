@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:hijra/models/asmaul_husna.dart';
 import 'package:hijra/models/detail_surah.dart';
 import 'package:hijra/models/surah_info.dart';
 
@@ -9,6 +10,13 @@ class ApiService {
     String response = await rootBundle.loadString('static/surah_info.json');
     List collection = jsonDecode(response);
     return collection.map((json) => SurahInfo.fromJson(json)).toList();
+  }
+
+  Future<List<AsmaulHusna>> loadAsmaulHusna() async {
+    String response = await rootBundle.loadString('static/asmaul-husna.json');
+    var res = json.decode(response);
+    Iterable data = res['data'];
+    return data.map((model) => AsmaulHusna.fromJson(model)).toList();
   }
 
   Future<DetailSurah> loadSurah(index) async {
