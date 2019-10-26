@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hijra/components/menu_item.dart';
+import 'package:hijra/screens/quran_screen.dart';
 
 class MenuContainer extends StatelessWidget {
-  List<String> menus = [
+  final List<String> menus = [
     'Al-Quran',
     'Asmaul Husna',
     'Doa Harian',
     'Coming Soon'
   ];
 
-  List<String> images = [
+  final List<String> images = [
     'assets/quran.jpg',
     'assets/asmaul.png',
     'assets/hadits.jpg',
     'assets/coming-soon.jpg',
   ];
+
+  final List<Widget> screens = [QuranScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,12 @@ class MenuContainer extends StatelessWidget {
           return MenuItem(
             image: images[index],
             title: menus[index],
-            onTap: () => {},
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => screens[index],
+              ),
+            ),
           );
         },
       ),
