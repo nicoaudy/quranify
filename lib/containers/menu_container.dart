@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hijra/components/menu_item.dart';
+import 'package:hijra/screens/asmaul_husna_screen.dart';
 import 'package:hijra/screens/quran_screen.dart';
 
 class MenuContainer extends StatelessWidget {
@@ -17,7 +18,10 @@ class MenuContainer extends StatelessWidget {
     'assets/coming-soon.jpg',
   ];
 
-  final List<Widget> screens = [QuranScreen()];
+  final List<Widget> screens = [
+    QuranScreen(),
+    AsmaulHusnaScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class MenuContainer extends StatelessWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height / 1.7),
+              (MediaQuery.of(context).size.height / 1.6),
         ),
         itemBuilder: (context, int index) {
           return MenuItem(
