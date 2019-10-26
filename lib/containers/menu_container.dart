@@ -28,7 +28,11 @@ class MenuContainer extends StatelessWidget {
               (MediaQuery.of(context).size.height / 1.7),
         ),
         itemBuilder: (context, int index) {
-          return MenuItem(image: images[index], title: menus[index]);
+          return MenuItem(
+            image: images[index],
+            title: menus[index],
+            onTap: () => {},
+          );
         },
       ),
     );
